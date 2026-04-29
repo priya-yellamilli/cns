@@ -1,0 +1,57 @@
+import java.math.BigInteger; 
+import java.util.Scanner; 
+public class RSAExample { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        System.out.print("Enter prime number p: "); 
+        BigInteger p = sc.nextBigInteger(); 
+ 
+        System.out.print("Enter prime number q: "); 
+        BigInteger q = sc.nextBigInteger(); 
+         BigInteger n = p.multiply(q); 
+         BigInteger phi = 
+(p.subtract(BigInteger.ONE)).multiply(q.subtract(BigInteger.ONE)); 
+         System.out.print("Enter public key e: "); 
+        BigInteger e = sc.nextBigInteger(); 
+         BigInteger d = e.modInverse(phi);  
+        System.out.println("\nPublic Key (e, n): (" + e + ", " + n + ")"); 
+        System.out.println("Private Key (d, n): (" + d + ", " + n + ")"); 
+         System.out.print("\nEnter message (number): "); 
+        BigInteger message = sc.nextBigInteger(); 
+        BigInteger cipher = message.modPow(e, n); 
+        System.out.println("Encrypted message: " + cipher); 
+         BigInteger decrypted = cipher.modPow(d, n); 
+        System.out.println("Decrypted message: " + decrypted); 
+        sc.close(); 
+    } 
+} 
+ 
+ 
+ 
+Output: 
+Enter prime number p: 3 
+Enter prime number q: 3 
+Enter public key e: 3 
+ 
+Public Key (e, n): (3, 9) 
+Private Key (d, n): (3, 9)
+
+
+Step 1: Start the program 
+Step 2: Input two prime numbers p and q 
+Step 3: Compute 
+n = p × q 
+Step 4: Compute Euler’s Totient function 
+φ(n) = (p − 1) × (q − 1) 
+Step 5: Choose public key exponent e such that 
+1 < e < φ(n) and gcd(e, φ(n)) = 1 
+Step 6: Compute private key d such that 
+d = e⁻¹ mod φ(n) 
+Step 7: Display public key (e, n) and private key (d, n) 
+Step 8: Input message M (number form) 
+Step 9: Encrypt the message using 
+C = Mᵉ mod n 
+Step 10: Decrypt the message using 
+M = Cᵈ mod n 
+Step 11: Display encrypted and decrypted message 
+Step 12: Stop
