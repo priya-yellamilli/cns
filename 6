@@ -1,0 +1,55 @@
+import java.security.MessageDigest; 
+class Sha1Ex 
+{  
+ public static void main(String args[]) 
+ { 
+  try 
+  { 
+  String msg = "Hello World"; // input message  
+  MessageDigest md=  MessageDigest.getInstance("SHA-1"); // 
+create message digest object  
+  byte[] msgbytes = msg.getBytes(); // convert msg to byte array 
+    
+  byte[] digestbytes = md.digest(msgbytes); // compute digest 
+ 
+  StringBuilder hexstring = new StringBuilder(); // convert byte array 
+to hex  
+   for(byte b: digestbytes ) 
+   { 
+    String hex = Integer.toHexString(0xff &b); 
+ 
+    if(hex.length()==1) 
+    { 
+    hexstring.append('0'); 
+    } 
+    hexstring.append(hex); 
+   } 
+ 
+  System.out.println("Original Message: "+msg); 
+  System.out.println("Message Digest: "+hexstring.toString()); 
+  } 
+  catch(Exception e)  
+  { 
+  } 
+ } 
+} 
+
+
+Output: 
+Original Message: Hello World 
+Message Digest: 0a4d55a8d778e5022fab701977c5d840bbc486d0 
+
+
+Step 1: Start the program 
+Step 2: Define the input message (e.g., "Hello World") 
+Step 3: Create a MessageDigest object using SHA-1 algorithm 
+Step 4: Convert the input message into a byte array 
+Step 5: Generate the message digest using the digest() method 
+Step 6: Convert the resulting byte array into hexadecimal format 
+ For each byte  
+ Convert to hex value  
+ Append leading zero if needed  
+ Store in string  
+Step 7: Display the original message 
+Step 8: Display the SHA-1 message digest 
+Step 9: Stop
